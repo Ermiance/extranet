@@ -1,0 +1,65 @@
+header
+{
+    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+
+#logo
+{
+    width: 33%;
+    max-width: 200px;
+}
+
+#membre
+{
+    display: flex;
+}
+
+#photo_membre
+{
+    width: 50px;
+    height: 50px;
+}
+
+section
+{
+    max-width: 800px;
+    margin: auto;
+}
+
+#illustration
+{
+    max-width: 50%;
+
+}
+
+.bloc_acteur
+{
+    display: flex;
+    max-width: fit-content;
+    flex-wrap: wrap;
+}
+
+.logo_acteur
+{
+    width: 20%;
+}
+
+.bloc2
+{
+    display: flex;
+
+}
+
+.suite
+{
+    align-self: flex-end;
+}
+
+footer
+{
+    display: flex;
+    justify-content: center;
+}
