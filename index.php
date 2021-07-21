@@ -1,3 +1,13 @@
+<?php 
+if (isset($_POST))
+{
+    setcookie('pseudo', $_POST['pseudo'], time() + 24*3600, null, null, false, true);
+}
+elseif (is_null($_COOKIE["pseudo"]))
+{
+    setcookie('pseudo', null, time() + 24*3600, null, null, false, true); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +18,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <img id="logo" src="logo_gbaf.png" alt="Logo GBAF">
-        <div id="membre">
-            <img id="photo_membre" src="membre.png" alt="Photo membre">
-            <p>Nom Prénom</p>
-        </div>
-    </header>
+    <?php include('header.php'); ?>
     <section id="presentation">
         <h1>Extranet GBAF</h1>
         <p>Bienvenue sur l'extranet du GBAF</p>
@@ -34,9 +38,6 @@
             </div>
         </div>
     </section>
-    <footer>
-            <p>Mentions Légales</p>
-            <p>Contact</p>
-    </footer>
+    <?php include('footer.php'); ?>
 </body>
 </html>
