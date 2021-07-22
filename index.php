@@ -1,11 +1,11 @@
 <?php 
 if (isset($_POST))
 {
-    setcookie('pseudo', $_POST['pseudo'], time() + 24*3600, null, null, false, true);
+    setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
 }
-elseif (is_null($_COOKIE["pseudo"]))
+elseif (is_null($_COOKIE["username"]))
 {
-    setcookie('pseudo', null, time() + 24*3600, null, null, false, true); 
+    setcookie('username', null, time() + 24*3600, null, null, false, true); 
 }
 ?>
 <!DOCTYPE html>
