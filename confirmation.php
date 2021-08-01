@@ -11,34 +11,12 @@
     <?php include('header.php'); ?>
     <section>
         <?php 
+
+        include('functions.php');
+
         // teste si il y a un formulaire
         if (isset($_POST["username"]))
         {
-            //essaie une connexion au SQL et traite l'exception
-          function connectBdd(){
-            try
-            {
-               return $bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8', 
-                'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            }
-            catch (exception $e)
-            {
-                die('Erreur : ' . $e->getMessage());
-            } 
-          }
-            
-            // vérifie username
-            function userExist($user){
-
-            
-                $req = connectBdd()->prepare("SELECT username FROM account WHERE username = ?");
-            
-                $req->execute(array($user));
-                  
-                $user = $req->fetch();
-             
-               return $user['username'];
-            }
             
             
             if (userExist($_POST["username"]))
@@ -50,20 +28,12 @@
                 <?php
             }
             else
-            // ajoute l'entrée dans "account"
             {
-                $ins = $bdd->prepare("INSERT INTO account(nom, prenom, username, password, question, reponse)
-                VALUES (:nom, :prenom, :username, :password, :question, :reponse)");
-                var_dump($ins);
-                $ins->exec(array(
-                    'nom' => $_POST['nom'], 
-                    'prenom' => $_POST['prenom'], 
-                    'username' => $_POST['username'], 
-                    'password' => $_POST['password'], 
-                    'question' => $_POST['question'], 
-                    'reponse' => $_POST['reponse']
-                ));
+                addUser($_POST['nom'], $_POST['prenom'], $_POST['username'], $_POST['password'], $_POST['question'], $_POST['reponse']);
+                setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
             }
+            
+            
             
             //$req->closeCursor();
         }   
@@ -73,7 +43,8 @@
         <p>
             Redirection vers la page d'enregistrement...
         </p>
-        <?php
+        <?php 
+        header('Location: index.php');
         }
         ?>
     </section>

@@ -1,9 +1,8 @@
 <?php 
-if (isset($_POST))
-{
-    setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
-}
-elseif (is_null($_COOKIE["username"]))
+include('functions.php');
+
+
+if (!isset($_COOKIE["username"]))
 {
     setcookie('username', null, time() + 24*3600, null, null, false, true); 
 }

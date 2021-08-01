@@ -10,13 +10,31 @@
 <body>
     <?php include('header.php'); ?>
     <section>
-        <form method="post" action="index.php">
+        <?php
+        
+        // include('functions.php');
+
+        if (is_null($_COOKIE['username']))
+        {
+        ?>
+        <form method="post" action="loginredirect.php">
             <p>
                 Pseudonyme d'utilisateur : <input type="text" name="username" /><br>
                 Mot de passe : <input type="password" name="password" /><br>
                 <input type="submit" value="Valider" />
             </p>
         </form>
+        <?php
+        }
+        else
+        {
+            ?>
+            <p>
+                Vous êtes déjà connecté.
+            </p>
+            <?php
+        }
+        ?>
     </section>
     <?php include('footer.php'); ?>
 </body>
