@@ -15,20 +15,33 @@
         if (isset($_POST["username"]))
         {
             //essaie une connexion au SQL et traite l'exception
+          function connectBdd(){
             try
             {
-                $bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8', 
+               return $bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8', 
                 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             }
             catch (exception $e)
             {
                 die('Erreur : ' . $e->getMessage());
-            }
+            } 
+          }
+            
             // vérifie username
-            $req = $bdd->prepare("SELECT username FROM account WHERE username = ?");
-            $req->execute(array($_POST["username"]));
-            $user = $req->fetch();
-            if ($_POST['username'] == $user['username'])
+            function userExist($user){
+
+            
+                $req = connectBdd()->prepare("SELECT username FROM account WHERE username = ?");
+            
+                $req->execute(array($user));
+                  
+                $user = $req->fetch();
+             
+               return $user['username'];
+            }
+            
+            
+            if (userExist($_POST["username"]))
             {
                 ?>
                 <p>
@@ -41,6 +54,7 @@
             {
                 $ins = $bdd->prepare("INSERT INTO account(nom, prenom, username, password, question, reponse)
                 VALUES (:nom, :prenom, :username, :password, :question, :reponse)");
+                var_dump($ins);
                 $ins->exec(array(
                     'nom' => $_POST['nom'], 
                     'prenom' => $_POST['prenom'], 
