@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include('config/functions.php');
 if (isset($_POST['username']))
 {
     $usercheck = userCheck($_POST['username'], $_POST['password']);

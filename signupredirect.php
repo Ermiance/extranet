@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extranet GBAF</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <?php include('header.php'); ?>
+<?php include('config/header.php'); ?>
     <section>
         <?php 
 
-        include('functions.php');
+        include('config/functions.php');
 
         // teste si il y a un formulaire
         if (isset($_POST["username"]))
@@ -48,6 +38,6 @@
         }
         ?>
     </section>
-    <?php include('footer.php'); ?>
+    <?php include('config/footer.php'); ?>
 </body>
 </html>

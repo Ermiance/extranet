@@ -1,10 +1,11 @@
 <?php
 //essaie une connexion au SQL et traite l'exception
 function connectBdd(){
+    include('credentials.php');
     try
     {
-    return $bdd = new PDO('mysql:host=localhost;dbname=gbaf;charset=utf8', 
-        'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    return $bdd = new PDO($host, 
+        $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
 
     catch (exception $e)
@@ -53,13 +54,82 @@ function userCheck($username, $password){
    return $user;
 }
 
+// met à jour un profil d'utilisateur
+function updateBdd($nomTable, $username, $propriete) {
+    $ins = connectBdd()->prepare("UPDATE ($nomTable) SET nom = :nom WHERE username = :username");
+
+    $ins->execute(array(
+    'nom' => $nom,
+    'username' => $username
+    ));
+}
+
+// charge une page d'acteur
+function loadActeur($acteur){
+    $req = connectBdd()->prepare('SELECT * FROM acteur WHERE acteur = ?');
+
+    $req->execute(array($acteur));
+
+    return $donnees = $req->fetch();
+}
+
+// charge les likes
+function loadVote($id_acteur){
+    $req = connectBdd()->prepare('SELECT * FROM vote WHERE id_acteur = ?');
+
+    $req->execute(array($id_acteur));
+
+    return $req;
+}
+
+// charge les commentaires
+function loadPost($id_acteur){
+    $req = connectBdd()->prepare('SELECT * FROM post WHERE id_acteur = ?');
+
+    $req->execute(array($id_acteur));
+
+    return $req;
+}
+
+//compte les votes
+function countVote($vote){
+    $decompte_vote = 0;
+    while($donnees = $vote->fetch()){
+        $decompte_vote += $donnees['vote'];
+    }
+    return($decompte_vote);
+}
+
+//compte les commentaires
+function countPost($commentaires){
+    $decompte_com = 0;
+    while($donnees = $commentaires->fetch()){
+        $decompte_com += 1;
+    }
+    return($decompte_com);
+}
+
+//retrouve un prénom d'utilisateur
+function userPrenom($id_user){
+            
+    $req = connectBdd()->prepare("SELECT prenom FROM account WHERE id_user = ?");
+
+    $req->execute(array($id_user));
+      
+    $user = $req->fetch();
+ 
+   return $user['prenom'];
+} 
+
+//foreach ()
+    //updateBdd()
 // change les paramètres personnels
 function settingsUpdate($nom, $prenom, $username, $password, $question, $reponse){
     if(!empty($nom))
     {
         $ins = connectBdd()->prepare("UPDATE account SET nom = :nom WHERE username = :username");
 
-    $ins->execute(array(
+        $ins->execute(array(
         'nom' => $nom,
         'username' => $username
     ));
@@ -68,7 +138,7 @@ function settingsUpdate($nom, $prenom, $username, $password, $question, $reponse
     {
         $ins = connectBdd()->prepare("UPDATE account SET prenom = :prenom WHERE username = :username");
 
-    $ins->execute(array(
+        $ins->execute(array(
         'prenom' => $prenom,
         'username' => $username
     ));
@@ -77,7 +147,7 @@ function settingsUpdate($nom, $prenom, $username, $password, $question, $reponse
     {
         $ins = connectBdd()->prepare("UPDATE account SET password = :password WHERE username = :username");
 
-    $ins->execute(array(
+        $ins->execute(array(
         'password' => $password,
         'username' => $username
     ));
@@ -86,7 +156,7 @@ function settingsUpdate($nom, $prenom, $username, $password, $question, $reponse
     {
         $ins = connectBdd()->prepare("UPDATE account SET question = :question WHERE username = :username");
 
-    $ins->execute(array(
+        $ins->execute(array(
         'question' => $question,
         'username' => $username
     ));
@@ -95,12 +165,12 @@ function settingsUpdate($nom, $prenom, $username, $password, $question, $reponse
     {
         $ins = connectBdd()->prepare("UPDATE account SET reponse = :reponse WHERE username = :username");
 
-    $ins->execute(array(
+        $ins->execute(array(
         'reponse' => $reponse,
         'username' => $username
     ));
     }
-    
 }
+
 
 ?>
