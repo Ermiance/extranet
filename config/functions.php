@@ -14,10 +14,10 @@ function connectBdd(){
     } 
 }
 
-// vérifie l'existence du username
-function userExist($username){
+// charge l'utilisateur à partir du username
+function loadUSer($username){
             
-    $req = connectBdd()->prepare("SELECT username FROM account WHERE username = ?");
+    $req = connectBdd()->prepare("SELECT * FROM account WHERE username = ?");
 
     $req->execute(array($username));
       
@@ -55,14 +55,16 @@ function userCheck($username, $password){
 }
 
 // met à jour un profil d'utilisateur
-function updateBdd($nomTable, $username, $propriete) {
-    $ins = connectBdd()->prepare("UPDATE ($nomTable) SET nom = :nom WHERE username = :username");
+function updateBdd($nom, $username) {
+    $ins = connectBdd()->prepare("UPDATE account SET nom = :nom WHERE username = :username");
 
     $ins->execute(array(
     'nom' => $nom,
     'username' => $username
     ));
 }
+
+
 
 // charge une page d'acteur
 function loadActeur($acteur){
@@ -71,15 +73,6 @@ function loadActeur($acteur){
     $req->execute(array($acteur));
 
     return $donnees = $req->fetch();
-}
-
-// charge les likes
-function loadVote($id_acteur){
-    $req = connectBdd()->prepare('SELECT * FROM vote WHERE id_acteur = ?');
-
-    $req->execute(array($id_acteur));
-
-    return $req;
 }
 
 // charge les commentaires
@@ -92,22 +85,54 @@ function loadPost($id_acteur){
 }
 
 //compte les votes
-function countVote($vote){
-    $decompte_vote = 0;
-    while($donnees = $vote->fetch()){
-        $decompte_vote += $donnees['vote'];
-    }
-    return($decompte_vote);
+function countVote($id_acteur){
+    $req = connectBdd()->prepare('SELECT COALESCE(SUM(vote), 0) AS sum_likes FROM vote WHERE id_acteur = ?');
+    
+    $req->execute(array($id_acteur));
+
+    return($req->fetch());
 }
 
 //compte les commentaires
-function countPost($commentaires){
-    $decompte_com = 0;
-    while($donnees = $commentaires->fetch()){
-        $decompte_com += 1;
-    }
-    return($decompte_com);
+function countPost($id_acteur){
+    $req = connectBdd()->prepare('SELECT COUNT(*) AS nb_com FROM post WHERE id_acteur = ?');
+
+    $req->execute(array($id_acteur));
+
+    return($req->fetch());
 }
+
+// charge le vote de l'utilisateur
+function loadVote($id_user, $id_acteur){
+    $req = connectBdd()->prepare('SELECT * FROM vote WHERE (id_user = ? AND id_acteur = ?)');
+
+    $req->execute(array($id_user, $id_acteur));
+
+    return $donnees = $req->fetch();
+}
+
+//crée un vote d'utilisateur
+function addVote($id_user, $id_acteur, $vote){
+    $ins = connectBdd()->prepare("INSERT INTO vote(id_user, id_acteur, vote)
+    VALUES (:id_user, :id_acteur, :vote)");
+
+    $ins->execute(array(
+        'id_user' => $id_user, 
+        'id_acteur' => $id_acteur, 
+        'vote' => $vote
+    ));
+}
+
+//change le vote de l'utilisateur
+function updateVote($id_user, $id_acteur, $vote) {
+    $ins = connectBdd()->prepare("UPDATE vote SET vote = :vote WHERE (id_user = :id_user AND id_acteur = :id_acteur)");
+
+    $ins->execute(array(
+        'id_user' => $id_user, 
+        'id_acteur' => $id_acteur, 
+        'vote' => $vote
+    ));
+} 
 
 //retrouve un prénom d'utilisateur
 function userPrenom($id_user){

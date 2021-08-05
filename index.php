@@ -11,7 +11,7 @@ include('config/header.php'); ?>
     <section id="presentation">
         <h1>Extranet GBAF</h1>
         <p>Bienvenue sur l'extranet du GBAF</p>
-        <img id="illustration" src="illustration.jpg" alt="Illustration GBAF">
+        <img id="illustration" src="img/illustration.jpg" alt="Illustration GBAF">
     </section>
     <section id="acteurs">
         <h2>Acteurs et partenaires</h2>

@@ -4,11 +4,17 @@ include('config/header.php');
 include('config/functions.php');
 ?>
 <?php
-if(isset($_GET['acteur']))
+if(isset($_GET['acteur']) && isset($_COOKIE['username']))
 {
-    $acteur = loadActeur(urldecode($_GET['acteur']));
-    $commentaires = loadPost($acteur['id_acteur']);
-    $vote = loadVote($acteur['id_acteur']);
+    try
+    {
+        $acteur = loadActeur(urldecode($_GET['acteur']));
+    }
+
+    catch (exception $e)
+    {
+        die('Erreur : ' . $e->getMessage());
+    } 
     ?>
     <section id='presentation'>
         <img src="<?= $acteur['logo'] ?>" alt="Logo de l'acteur">
@@ -17,12 +23,48 @@ if(isset($_GET['acteur']))
     </section>
     <section id='commentaires'>
         <div id='comheader'>
-            <p><?=countPost($commentaires)?> commentaires</p>
+            <p><?=countPost($acteur['id_acteur'])['nb_com']?> commentaires</p>
             <p>Nouveau commentaire</p>
             <div>
-                <p><?=countVote($vote)?></p>
-                <a href=""><img src="img/like.png" alt="Like" width=30px></a>
-                <a href=""><img src="img/dislike.png" alt="Dislike" width=30px></a>
+                <p><?=countVote($acteur['id_acteur'])['sum_likes']?></p>
+                <?php 
+                $id_user = loadUser($_COOKIE['username'])['id_user'];
+                $user_vote = loadVote($id_user, $acteur['id_acteur']);
+                if($user_vote){
+                    if($user_vote['vote'] < 1){
+                        ?>
+                        <a href="likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=like">
+                        <img src="img/like.png" alt="Like" width=30px></a>
+                        <?php
+                    }
+                    else {
+                        ?>
+                        <a href="likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=unlike">
+                        <img src="img/likevalidated.png" alt="Like" width=30px></a>
+                        <?php
+                    }
+                    if($user_vote['vote'] > -1){
+                        ?>
+                        <a href="likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=dislike">
+                        <img src="img/dislike.png" alt="Dislike" width=30px></a>
+                        <?php
+                    }
+                    else {
+                        ?>
+                        <a href="likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=undislike">
+                        <img src="img/dislikevalidated.png" alt="Dislike" width=30px></a>
+                        <?php
+                    }
+                }
+                else{
+                    ?>
+                    <a href="likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=like&action=create">
+                    <img src="img/like.png" alt="Like" width=30px></a>
+                    <a href="likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=dislike&action=create">
+                    <img src="img/dislike.png" alt="Dislike" width=30px></a>
+                    <?php
+                }
+                ?>
             </div>
         </div>
         <div id='listecommentaires'>

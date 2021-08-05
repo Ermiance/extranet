@@ -9,7 +9,7 @@
         {
             
             
-            if (userExist($_POST["username"]))
+            if (loadUser($_POST["username"]))
             {
                 ?>
                 <p>

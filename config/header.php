@@ -9,9 +9,9 @@
 </head>
 <body>
 <header>
-    <a href="index.php"><img id="logo" src="logo_gbaf.png" alt="Logo GBAF"></a>
+    <a href="index.php"><img id="logo" src="img/logo_gbaf.png" alt="Logo GBAF"></a>
         <div id="membre">
-            <img id="photo_membre" src="membre.png" alt="Photo membre">
+            <img id="photo_membre" src="img/membre.png" alt="Photo membre">
             <p>
                 <?php 
                 // include('functions.php');
