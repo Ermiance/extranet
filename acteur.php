@@ -73,15 +73,24 @@ if(isset($_GET['acteur']) && isset($_COOKIE['username']))
         while($com = $commentaires->fetch()){
             ?>
             <div>
-                <p>Prénom: <?=userPrenom($com['id_user'])?></p>
+                <p>Commentaire de: <?=userPrenom($com['id_user'])?></p>
                 <p>Date: <?=$com['date_add']?></p>
                 <p><?=$com['post']?></p>
             </div>
         <?php
         }
-
-        
         ?>
+        </div>
+        <div id='nouveaucom'>
+            <form method='post' action='acteurredirect.php'>
+                <p>Nouveau commentaire : <br>
+                <input type="text" name='post'><br>
+                <input type="hidden" name='id_user' value='<?=$id_user?>'>
+                <input type="hidden" name='id_acteur' value='<?=$acteur['id_acteur']?>'>
+                <input type="hidden" name='acteur' value="<?=urlencode($acteur['acteur'])?>">
+                <input type="submit" value='valider'>
+                </p>
+            </form>
         </div>
     </section>
     <?php

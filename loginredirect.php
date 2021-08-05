@@ -2,11 +2,34 @@
 include('config/functions.php');
 if (isset($_POST['username']))
 {
-    $usercheck = userCheck($_POST['username'], $_POST['password']);
-    if (isset($usercheck))
+    if(isset($_POST['question']))
     {
-        setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
+        $user = loadUser($_POST['username']);
+        if(is_null($user))
+        {
+            header('location: login.php?login=wronguser');
+        }
+        else
+        {
+            header('location: question.php?username=' . $user['username']);
+        }
+    }
+    else
+    {
+        $usercheck = userCheck($_POST['username'], $_POST['password']);
+        if ($usercheck)
+        {
+            setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
+            header('Location: index.php');
+        }
+        else
+        {
+            header('location: login.php?login=wrongpw');
+        }
     }
 }
-header('Location: index.php');
+else
+{
+    header('Location: login.php?login=wrongpw');
+}
 ?>

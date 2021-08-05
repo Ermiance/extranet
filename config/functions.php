@@ -146,6 +146,18 @@ function userPrenom($id_user){
    return $user['prenom'];
 } 
 
+//ajoute un commentaire
+function addPost($id_user, $id_acteur, $post){
+    $ins = connectBdd()->prepare("INSERT INTO post(id_user, id_acteur, post)
+    VALUES (:id_user, :id_acteur, :post)");
+
+    $ins->execute(array(
+        'id_user' => $id_user, 
+        'id_acteur' => $id_acteur, 
+        'post' => $post
+    ));
+}
+
 //foreach ()
     //updateBdd()
 // change les paramètres personnels

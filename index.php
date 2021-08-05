@@ -4,7 +4,7 @@ include('config/functions.php');
 
 if (!isset($_COOKIE["username"]))
 {
-    setcookie('username', null, time() + 24*3600, null, null, false, true); 
+    header('Location: login.php'); 
 }
 
 include('config/header.php'); ?>
@@ -26,7 +26,6 @@ include('config/header.php'); ?>
             {
                 ?>
                 <div class="bloc_acteur">
-                    <?= urlencode($acteur['acteur']); ?>
                     <a href="acteur.php?acteur=<?=urlencode($acteur['acteur']) ?>">
                     <img class="logo_acteur" src="<?= $acteur['logo'] ?>" width="100" height ="100" 
                     attr="<?= $acteur['logo']?>" alt=""></a>
