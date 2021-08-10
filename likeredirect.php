@@ -12,27 +12,29 @@ if(isset($_GET['acteur']) && isset($_COOKIE['username']))
     {
         die('Erreur : ' . $e->getMessage());
     } 
-    if($_GET['action'] == 'create'){
-        if($_GET['vote'] == 'like'){
+    if($_GET['create'] == '1')
+    {
+        if($_GET['vote'] == 'like')
+        {
             addVote($id_user, $id_acteur, 1);
         }
-        elseif($_GET['vote'] == 'dislike'){
+        elseif($_GET['vote'] == 'dislike')
+        {
             addVote($id_user, $id_acteur, -1);
         }
     }
-    else{
-        if($_GET['vote'] == 'like'){
-            updateVote($id_user, $id_acteur, 1);
+    else
+    {
+        if($_GET['vote'] == 'like')
+        {
+            $user_vote = 1;
         }
-        elseif($_GET['vote'] == 'unlike'){
-            updateVote($id_user, $id_acteur, 0);
+        elseif($_GET['vote'] == 'dislike')
+        {
+            $user_vote = -1;
         }
-        elseif($_GET['vote'] == 'dislike'){
-            updateVote($id_user, $id_acteur, -1);
-        }
-        elseif($_GET['vote'] == 'undislike'){
-            updateVote($id_user, $id_acteur, 0);
-        }
+        $user_vote *= (1-$_GET['cancel']);
+        updateVote($id_user, $id_acteur, $user_vote);
     }
 }
 header('Location: acteur.php?acteur=' . urlencode(urldecode($_GET['acteur'])));

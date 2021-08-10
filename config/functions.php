@@ -4,8 +4,8 @@ function connectBdd(){
     include('credentials.php');
     try
     {
-    return $bdd = new PDO($host, 
-        $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    return $bdd = new PDO('mysql:host='.$cred["host"].';dbname='.$cred["dbname"].';charset=utf8', 
+        $cred['user'], $cred['password'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     }
 
     catch (exception $e)
@@ -72,16 +72,19 @@ function loadActeur($acteur){
 
     $req->execute(array($acteur));
 
-    return $donnees = $req->fetch();
+    return $req->fetch();
 }
 
 // charge les commentaires
-function loadPost($id_acteur){
-    $req = connectBdd()->prepare('SELECT * FROM post WHERE id_acteur = ?');
+function loadPost($id_acteur, $start){
+    if(is_int($start))
+    {
+        $req = connectBdd()->prepare('SELECT * FROM post WHERE id_acteur = ? ORDER BY date_add LIMIT ' . $start . ', 5');
 
-    $req->execute(array($id_acteur));
-
-    return $req;
+        $req->execute(array($id_acteur));
+        
+        return $req;
+    }
 }
 
 //compte les votes
@@ -108,7 +111,28 @@ function loadVote($id_user, $id_acteur){
 
     $req->execute(array($id_user, $id_acteur));
 
-    return $donnees = $req->fetch();
+    $vote = $req->fetch();
+
+    $result = array(
+        'create' => 1,
+        'like' => 0,
+        'dislike' => 0,
+    );
+
+    if($vote != false)
+    {
+        $result['create'] = 0;
+        if($vote['vote'] == 1)
+        {
+            $result['like'] = 1;
+        }
+        elseif($vote['vote'] == -1)
+        {
+            $result['dislike'] = 1;
+        }
+    }
+
+    return $result;
 }
 
 //crée un vote d'utilisateur

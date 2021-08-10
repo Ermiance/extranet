@@ -11,24 +11,34 @@
                 if($_GET['login'] == 'wrongpw')
                 {
                     ?>
-                    <p>Mauvais mot de passe ou identifiant !</p>
+                    <p id="error_message">Mauvais mot de passe ou identifiant !</p>
                     <?php
                 }
                 elseif($_GET['login'] == 'wronguser')
                 {
                     ?>
-                    <p>Cet identifiant n'existe pas !</p>
+                    <p id="error_message">Cet identifiant n'existe pas !</p>
                     <?php
                 }
             }
-                ?>
+            ?>
             <form method="post" action="loginredirect.php">
-                <p>
-                    Pseudonyme d'utilisateur : <input type="text" name="username" /><br>
-                    Mot de passe : <input type="password" name="password" /><br>
-                    <input type="checkbox" name="question" id='question'/><label for="question">J'ai oublié mon mot de passe comme un teubé</label>
-                    <input type="submit" value="Valider" />
-                </p>
+                <div id="form">
+                    <div class='form_div'>
+                        <p>Pseudonyme :</p> 
+                        <p>Mot de passe : </p>
+                    </div> 
+                    <div class='form_div'>
+                        <p><input type="text" name="username" /></p>
+                        <p><input type="password" name="password" /></p>
+                    </div>
+                    <p class='form_div2'>
+                        <input type="checkbox" name="question" id='question'/><label for="question">J'ai oublié mon mot de passe.</label>
+                    </p>
+                    <p class='form_div2'>
+                        <input id='valider' type="submit" value="Valider" />
+                    </p>
+                </div>
             </form>
             <?php
         }

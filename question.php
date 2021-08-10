@@ -16,7 +16,7 @@
                 if($_GET['response'] == 'wrong')
                 {
                     ?>
-                    <p>Votre réponse est incorrecte.</p>
+                    <p id="error_message">Votre réponse est incorrecte.</p>
                     <?php
                 }
 
@@ -24,11 +24,18 @@
 
             ?>
             <form method="post" action="questionredirect.php">
-                <p>
-                    Votre question : <?=$user['question']?><br>
-                    Votre réponse : <input type="text" name="response" /><br>
-                    <input type="hidden" name='username' value="<?=$_GET['username']?>">
-                    <input type="submit" value="Valider" />
+                <div id="form">
+                    <div class='form_div'>
+                        <p>Votre question :</p> 
+                        <p>Votre réponse : </p>
+                   </div>
+                <div class='form_div'>
+                    <p> <?=$user['question']?></p>
+                    <p><input type="text" name="response" /></p>
+                </div>
+                <input type="hidden" name='username' value="<?=$_GET['username']?>">
+                <p class='form_div2'>
+                    <input id='valider' type="submit" value="Valider" />
                 </p>
             </form>
             <?php

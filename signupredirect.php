@@ -19,8 +19,9 @@
             }
             else
             {
-                addUser($_POST['nom'], $_POST['prenom'], $_POST['username'], $_POST['password'], $_POST['question'], $_POST['reponse']);
+                addUser(ucfirst($_POST['nom']), ucfirst($_POST['prenom']), $_POST['username'], $_POST['password'], $_POST['question'], $_POST['reponse']);
                 setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
+                header('Location: index.php');
             }
             
             

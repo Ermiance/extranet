@@ -1,4 +1,3 @@
 <footer>
-        <p>Mentions Légales</p>
-        <p>Contact</p>
+        <p id="footer">| Mentions Légales | Contact |</p>
 </footer>

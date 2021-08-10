@@ -1,0 +1,290 @@
+/* header */
+
+header
+{
+    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    flex-wrap: wrap;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 30px;
+}
+
+#logo
+{
+    width: 150px;
+}
+
+#membre
+{
+    display: flex;
+    min-width: 200px;
+}
+
+#photo_membre
+{
+    width: 50px;
+    height: 50px;
+}
+
+/* index */
+
+section
+{
+    max-width: 700px;
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#presentation
+{
+    text-align: justify;
+}
+
+#illustration
+{
+    width: 100%;
+}
+
+.bloc_acteur
+{
+    display: flex;
+    max-width: fit-content;
+    flex-wrap: wrap;
+    border: 2px solid darkred;
+    border-radius: 5px;
+    margin: 20px 5px;
+    padding: 5px;
+}
+
+.logo_acteur
+{
+    width: 200px;
+}
+
+h3
+{
+    min-width: max-content;
+}
+
+.texte_acteur
+{
+    text-align: justify;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.suite
+{
+    margin-left: auto;
+    border: 2px solid darkred;
+    border-radius: 10px;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.suite:hover 
+{
+    background-color: darkred;
+    color: white;
+}
+
+/* signup */
+
+#error_message
+{
+    text-align: center;
+    font: large;
+    color: red;
+}
+
+#form
+{
+    width: 50%;
+    margin: auto;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.form_div
+{
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+}
+
+.form_div2
+{
+    width: auto;
+    justify-self: center;
+    margin: auto;
+}
+
+#valider
+{
+    border: 2px solid darkred;
+    border-radius: 10px;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    width:100%;
+}
+
+#valider:hover 
+{
+    background-color: darkred;
+    color: white;
+}
+
+/* acteur */
+
+#illu_acteur
+{
+    display: flex;
+    max-width: 70%;
+    margin: auto;
+}
+
+#description_acteur
+{
+    text-align: justify;
+}
+
+#header_coms
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#compteur_com
+{
+    display:flex;
+    height: 50px;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+#votes
+{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border: rgb(139, 0, 0) solid 2px;
+    border-radius: 5px;
+    max-height: 30px;;
+    padding: 5px;
+}
+
+#compteur_votes
+{
+    
+}
+
+#nouveau_com
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding:auto;
+}
+
+#button_com
+{
+    border: 2px solid darkred;
+    border-radius: 5px;
+    color: black;
+    padding: 10px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#button_com:hover 
+{
+    background-color: darkred;
+    color: white;
+}
+
+#text_com
+{
+    border: 2px solid gray;
+    min-height: 10em;
+    width: auto;
+    max-width: 30em;
+    text-align: justify;
+}
+
+
+.header_com
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: min-content;
+}
+
+.prenom
+{
+    margin:0;
+    height: min-content;
+}
+
+.date
+{
+    margin:0;
+    height: min-content;
+}
+
+.commentaire
+{
+    border: darkred solid 3px;
+    margin: 10px 30px;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+#pagin_com
+{
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: large;
+}
+
+/* footer */
+
+footer
+{
+    justify-content: center;
+    display: flex;
+}
+
+#footer
+{
+    border-top: solid red 3px;
+    margin-left: 15%;
+    flex:3;
+    margin-right: 15%;
+    padding-top: 10px;
+    text-align: center;
+    
+}

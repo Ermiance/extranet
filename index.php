@@ -9,9 +9,16 @@ if (!isset($_COOKIE["username"]))
 
 include('config/header.php'); ?>
     <section id="presentation">
-        <h1>Extranet GBAF</h1>
-        <p>Bienvenue sur l'extranet du GBAF</p>
-        <img id="illustration" src="img/illustration.jpg" alt="Illustration GBAF">
+        <h1>Bienvenue sur l'extranet du GBAF</h1>
+        <p>Le Groupement Banque Assurance Français​ (GBAF) est une fédération
+        représentant les 6 grands groupes français :</p>
+        <ul><li>BNP Paribas ;</li>
+        <li>BPCE ;</li>
+        <li>Crédit Agricole ;</li>
+        <li>Crédit Mutuel-CIC ;</li>
+        <li>Société Générale ;</li>
+        <li>La Banque Postale</li></ul>
+        <img id="illustration" src="img/illustration.jpg" alt="Illustration GBAF"> 
     </section>
     <section id="acteurs">
         <h2>Acteurs et partenaires</h2>
@@ -29,11 +36,9 @@ include('config/header.php'); ?>
                     <a href="acteur.php?acteur=<?=urlencode($acteur['acteur']) ?>">
                     <img class="logo_acteur" src="<?= $acteur['logo'] ?>" width="100" height ="100" 
                     attr="<?= $acteur['logo']?>" alt=""></a>
-                    <div class="bloc2">
-                        <h3><?= $acteur['acteur'] ?></h3>
-                        <p><?= $acteur['description'] ?></p>
-                        <p class="suite">Lire la suite</p>
-                    </div>
+                    <h3><?= $acteur['acteur'] ?></h3>
+                    <p class='texte_acteur'><?= $acteur['description'] ?></p>
+                    <a class="suite" href="acteur.php?acteur=<?=urlencode($acteur['acteur']) ?>">Lire la suite</a>
                 </div>
                 <?php                
             }

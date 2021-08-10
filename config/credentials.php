@@ -1,9 +1,10 @@
 <?php 
 // configuration à changer par l'utilisateur
+$cred = array(
+'host' => 'localhost',
+'dbname' => 'gbaf',
+'user' => 'root',
+'password' => 'root',
+);
 
-$host = 'mysql:host=localhost;dbname=gbaf;charset=utf8';
-
-$user = 'root';
-
-$password = 'root';
 ?>
