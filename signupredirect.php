@@ -1,10 +1,6 @@
 <?php include('config/header.php'); ?>
     <section>
         <?php 
-
-        include('config/functions.php');
-
-        // teste si il y a un formulaire
         if (isset($_POST["username"]))
         {
             

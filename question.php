@@ -1,9 +1,7 @@
 <?php include('config/header.php'); ?>
     <section>
+        <div class='separateur'></div>
         <?php
-        
-        include('config/functions.php');
-
         if (isset($_GET['username']))
         {
             $user = loadUser($_GET['username']);
@@ -23,20 +21,22 @@
             }
 
             ?>
+            <p>Pour vous connecter à nouveau, vous devez réinitialiser votre mot de passe en répondant à votre question secrète.</p>
             <form method="post" action="questionredirect.php">
                 <div id="form">
                     <div class='form_div'>
-                        <p>Votre question :</p> 
-                        <p>Votre réponse : </p>
+                        <p class="categorie">Votre question :</p> 
+                        <p class="categorie2"> <?=$user['question']?></p>
                    </div>
-                <div class='form_div'>
-                    <p> <?=$user['question']?></p>
-                    <p><input type="text" name="response" /></p>
+                    <div class='form_div'>
+                        <p class="categorie">Votre réponse : </p>
+                        <p class="categorie2"><input type="text" name="response" /></p>
+                    </div>
+                    <input type="hidden" name='username' value="<?=$_GET['username']?>">
+                    <p class='form_div2'>
+                        <input id='valider' type="submit" value="Valider" />
+                    </p>
                 </div>
-                <input type="hidden" name='username' value="<?=$_GET['username']?>">
-                <p class='form_div2'>
-                    <input id='valider' type="submit" value="Valider" />
-                </p>
             </form>
             <?php
             

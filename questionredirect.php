@@ -11,8 +11,8 @@ if (isset($_POST['username']))
         }
         elseif($_POST['response']==$user['reponse'])
         {
-            setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
-            header('Location: index.php');
+            setcookie('userreset', $_POST['username'], time() + 24*3600, null, null, false, true);
+            header('Location: pwreset.php');
         }
         else
         {

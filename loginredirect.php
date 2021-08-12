@@ -20,6 +20,7 @@ if (isset($_POST['username']))
         if ($usercheck)
         {
             setcookie('username', $_POST['username'], time() + 24*3600, null, null, false, true);
+            setcookie('login', 'true', time() + 60, null, null, false, true);
             header('Location: index.php');
         }
         else

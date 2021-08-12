@@ -1,9 +1,8 @@
 <?php include('config/header.php'); ?>
     <section>
+        <div class='separateur'></div>
         <?php
         
-        // include('config/functions.php');
-
         if (!isset($_COOKIE['username']))
         {
             if(isset($_GET['login']))
@@ -25,19 +24,18 @@
             <form method="post" action="loginredirect.php">
                 <div id="form">
                     <div class='form_div'>
-                        <p>Pseudonyme :</p> 
-                        <p>Mot de passe : </p>
-                    </div> 
-                    <div class='form_div'>
+                        <p class="categorie">Pseudonyme :</p>
                         <p><input type="text" name="username" /></p>
+                    </div>  
+                    <div class='form_div'>
+                        <p class="categorie">Mot de passe : </p>
                         <p><input type="password" name="password" /></p>
                     </div>
-                    <p class='form_div2'>
-                        <input type="checkbox" name="question" id='question'/><label for="question">J'ai oublié mon mot de passe.</label>
-                    </p>
-                    <p class='form_div2'>
-                        <input id='valider' type="submit" value="Valider" />
-                    </p>
+                    <div>
+                        <input type="checkbox" name="question" id='question' class='form_div2'/>
+                        <label for="question">J'ai oublié mon mot de passe.</label>
+                    </div>
+                    <input id='valider' type="submit" value="Valider" class='form_div2'/>
                 </div>
             </form>
             <?php

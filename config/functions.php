@@ -5,7 +5,7 @@ function connectBdd(){
     try
     {
     return $bdd = new PDO('mysql:host='.$cred["host"].';dbname='.$cred["dbname"].';charset=utf8', 
-        $cred['user'], $cred['password'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $cred['user'], $cred['password'], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 
     catch (exception $e)
@@ -19,7 +19,7 @@ function loadUSer($username){
             
     $req = connectBdd()->prepare("SELECT * FROM account WHERE username = ?");
 
-    $req->execute(array($username));
+    $req->execute([$username]);
       
     $user = $req->fetch();
  
@@ -32,14 +32,14 @@ function addUser($nom, $prenom, $username, $password, $question, $reponse){
     $ins = connectBdd()->prepare("INSERT INTO account(nom, prenom, username, password, question, reponse)
     VALUES (:nom, :prenom, :username, :password, :question, :reponse)");
 
-    $ins->execute(array(
+    $ins->execute([
         'nom' => $nom, 
         'prenom' => $prenom, 
         'username' => $username, 
         'password' => $password, 
         'question' => $question, 
         'reponse' => $reponse
-    ));
+    ]);
 }
 
 // vérifie le username et le password
@@ -47,7 +47,7 @@ function userCheck($username, $password){
             
     $req = connectBdd()->prepare("SELECT username FROM account WHERE (username = ? AND password = ?)");
 
-    $req->execute(array($username, $password));
+    $req->execute([$username, $password]);
       
     $user = $req->fetch();
  
@@ -58,10 +58,10 @@ function userCheck($username, $password){
 function updateBdd($nom, $username) {
     $ins = connectBdd()->prepare("UPDATE account SET nom = :nom WHERE username = :username");
 
-    $ins->execute(array(
+    $ins->execute([
     'nom' => $nom,
     'username' => $username
-    ));
+    ]);
 }
 
 
@@ -70,7 +70,7 @@ function updateBdd($nom, $username) {
 function loadActeur($acteur){
     $req = connectBdd()->prepare('SELECT * FROM acteur WHERE acteur = ?');
 
-    $req->execute(array($acteur));
+    $req->execute([$acteur]);
 
     return $req->fetch();
 }
@@ -79,9 +79,9 @@ function loadActeur($acteur){
 function loadPost($id_acteur, $start){
     if(is_int($start))
     {
-        $req = connectBdd()->prepare('SELECT * FROM post WHERE id_acteur = ? ORDER BY date_add LIMIT ' . $start . ', 5');
+        $req = connectBdd()->prepare('SELECT * FROM post WHERE id_acteur = ? ORDER BY date_add DESC LIMIT ' . $start . ', 5');
 
-        $req->execute(array($id_acteur));
+        $req->execute([$id_acteur]);
         
         return $req;
     }
@@ -91,7 +91,7 @@ function loadPost($id_acteur, $start){
 function countVote($id_acteur){
     $req = connectBdd()->prepare('SELECT COALESCE(SUM(vote), 0) AS sum_likes FROM vote WHERE id_acteur = ?');
     
-    $req->execute(array($id_acteur));
+    $req->execute([$id_acteur]);
 
     return($req->fetch());
 }
@@ -100,7 +100,7 @@ function countVote($id_acteur){
 function countPost($id_acteur){
     $req = connectBdd()->prepare('SELECT COUNT(*) AS nb_com FROM post WHERE id_acteur = ?');
 
-    $req->execute(array($id_acteur));
+    $req->execute([$id_acteur]);
 
     return($req->fetch());
 }
@@ -109,15 +109,15 @@ function countPost($id_acteur){
 function loadVote($id_user, $id_acteur){
     $req = connectBdd()->prepare('SELECT * FROM vote WHERE (id_user = ? AND id_acteur = ?)');
 
-    $req->execute(array($id_user, $id_acteur));
+    $req->execute([$id_user, $id_acteur]);
 
     $vote = $req->fetch();
 
-    $result = array(
+    $result = [
         'create' => 1,
         'like' => 0,
         'dislike' => 0,
-    );
+    ];
 
     if($vote != false)
     {
@@ -140,22 +140,22 @@ function addVote($id_user, $id_acteur, $vote){
     $ins = connectBdd()->prepare("INSERT INTO vote(id_user, id_acteur, vote)
     VALUES (:id_user, :id_acteur, :vote)");
 
-    $ins->execute(array(
+    $ins->execute([
         'id_user' => $id_user, 
         'id_acteur' => $id_acteur, 
         'vote' => $vote
-    ));
+    ]);
 }
 
 //change le vote de l'utilisateur
 function updateVote($id_user, $id_acteur, $vote) {
     $ins = connectBdd()->prepare("UPDATE vote SET vote = :vote WHERE (id_user = :id_user AND id_acteur = :id_acteur)");
 
-    $ins->execute(array(
+    $ins->execute([
         'id_user' => $id_user, 
         'id_acteur' => $id_acteur, 
         'vote' => $vote
-    ));
+    ]);
 } 
 
 //retrouve un prénom d'utilisateur
@@ -163,7 +163,7 @@ function userPrenom($id_user){
             
     $req = connectBdd()->prepare("SELECT prenom FROM account WHERE id_user = ?");
 
-    $req->execute(array($id_user));
+    $req->execute([$id_user]);
       
     $user = $req->fetch();
  
@@ -175,63 +175,30 @@ function addPost($id_user, $id_acteur, $post){
     $ins = connectBdd()->prepare("INSERT INTO post(id_user, id_acteur, post)
     VALUES (:id_user, :id_acteur, :post)");
 
-    $ins->execute(array(
+    $ins->execute([
         'id_user' => $id_user, 
         'id_acteur' => $id_acteur, 
         'post' => $post
-    ));
+    ]);
 }
 
-//foreach ()
-    //updateBdd()
+
 // change les paramètres personnels
-function settingsUpdate($nom, $prenom, $username, $password, $question, $reponse){
-    if(!empty($nom))
+function settingsUpdate($username, $settings)
+{
+    foreach ($settings as $setting=>$value)
     {
-        $ins = connectBdd()->prepare("UPDATE account SET nom = :nom WHERE username = :username");
+        if(is_null($value))
+        {
+            continue;
+        }
+        $ins = connectBdd()->prepare("UPDATE account SET " . $setting . " = :value WHERE username = :username");
 
-        $ins->execute(array(
-        'nom' => $nom,
+        $ins->execute([
+        'value' => $value,
         'username' => $username
-    ));
-    }
-    if(!empty($prenom))
-    {
-        $ins = connectBdd()->prepare("UPDATE account SET prenom = :prenom WHERE username = :username");
-
-        $ins->execute(array(
-        'prenom' => $prenom,
-        'username' => $username
-    ));
-    }
-    if(!empty($password))
-    {
-        $ins = connectBdd()->prepare("UPDATE account SET password = :password WHERE username = :username");
-
-        $ins->execute(array(
-        'password' => $password,
-        'username' => $username
-    ));
-    }
-    if(!empty($question))
-    {
-        $ins = connectBdd()->prepare("UPDATE account SET question = :question WHERE username = :username");
-
-        $ins->execute(array(
-        'question' => $question,
-        'username' => $username
-    ));
-    }
-    if(!empty($reponse))
-    {
-        $ins = connectBdd()->prepare("UPDATE account SET reponse = :reponse WHERE username = :username");
-
-        $ins->execute(array(
-        'reponse' => $reponse,
-        'username' => $username
-    ));
+        ]);
     }
 }
-
 
 ?>

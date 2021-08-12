@@ -3,12 +3,25 @@
 header
 {
     max-width: 800px;
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-    flex-wrap: wrap;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 30px;
+    margin: auto;
+}
+
+#top_header
+{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items:center;
+}
+
+@media only screen and (min-width: 400px)
+{
+    #top_header
+    {
+        flex-direction: row;
+    }
 }
 
 #logo
@@ -26,25 +39,68 @@ header
 {
     width: 50px;
     height: 50px;
+    margin: 12px;
+}
+
+a:link 
+{
+    color: red;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:visited 
+{
+    color: darkred;
+    background-color: transparent;
+    text-decoration: none;
+}
+  
+a:hover 
+{
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+#bienvenue
+{
+    margin:20px auto 0;
+    width: max-content;
+    font-size: larger;
+    color: crimson;
 }
 
 /* index */
 
 section
 {
-    max-width: 700px;
+    max-width: 900px;
     margin: auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#presentation
+p
 {
     text-align: justify;
 }
 
+.separateur
+{
+    border-top: solid darkred 3px;
+    margin: 50px 5% 25px;
+    flex:3;
+    padding-top: 10px;
+}
+
+h1
+{
+   
+}
+
 #illustration
 {
-    width: 100%;
+    width: 80%;
+    margin: 0 10%;
 }
 
 .bloc_acteur
@@ -66,6 +122,7 @@ section
 h3
 {
     min-width: max-content;
+    margin-left: 20px;
 }
 
 .texte_acteur
@@ -109,25 +166,55 @@ h3
 
 #form
 {
-    width: 50%;
     margin: auto;
     display:flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items:center;
 }
 
 .form_div
 {
-    width: 50%;
+    width: 100%;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 100px;
+    align-items: center;
+}
+
+.categorie
+{
+    margin: 15px 0 -5px;
+    width: 40%;
+}
+
+.categorie2
+{
+    width: 40%;
+    text-justify: none;
+}
+
+@media only screen and (min-width: 400px) 
+{
+    .form_div
+    {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .categorie
+    {
+        margin: 0;
+        width: 40%;
+    }
+}
+
+#question
+{
+    margin: auto;
 }
 
 .form_div2
 {
     width: auto;
-    justify-self: center;
     margin: auto;
 }
 
@@ -136,14 +223,14 @@ h3
     border: 2px solid darkred;
     border-radius: 10px;
     color: black;
-    padding: 16px 32px;
+    padding: 8px 16px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 10px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
-    width:100%;
+    width: min-content;
 }
 
 #valider:hover 
@@ -170,15 +257,43 @@ h3
 {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-start;
 }
 
 #compteur_com
 {
     display:flex;
-    height: 50px;
     flex-wrap: wrap;
-    overflow: hidden;
+    font-size: large;
+    min-width: 30px;
+}
+
+#hidden_com
+{
+    display:none;
+}
+
+
+@media only screen and (max-width: 499px)
+{
+    #hidden_com
+    {
+        display:inline;
+    }
+}
+
+#hidden_com2
+{
+    display:none;
+}
+
+
+@media only screen and (min-width: 500px)
+{
+    #hidden_com2
+    {
+        display:inline;
+    }
 }
 
 #votes
@@ -186,37 +301,69 @@ h3
     display: flex;
     justify-content: right;
     align-items: center;
-    border: rgb(139, 0, 0) solid 2px;
+    flex-direction: column;
+    border: rgb(139, 0, 0) solid 3px;
     border-radius: 5px;
-    max-height: 30px;;
-    padding: 5px;
+    margin: 5px 10px;
+    padding-bottom: -4px;
+}
+
+@media only screen and (min-width: 400px)
+{
+    #votes
+    {
+        flex-direction: row;
+        margin: 5px 10px;
+        max-height: 30px;
+        padding: 5px;
+    }
 }
 
 #compteur_votes
 {
-    
+    margin: -6px 0 -4px;
+}
+
+@media only screen and (min-width: 400px)
+{
+    #compteur_votes
+    {
+        margin: 0;
+    }
+}
+
+details > summary
+{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+details > summary::-webkit-details-marker 
+{
+    display: none;
 }
 
 #nouveau_com
 {
+    flex-grow: 5;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding:auto;
 }
 
 #button_com
 {
-    border: 2px solid darkred;
+    border: 3px solid darkred;
     border-radius: 5px;
     color: black;
     padding: 10px 16px;
     text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    display: grid;
+    font-size: medium;
+    margin: 5px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+    width: min-content;
 }
 
 #button_com:hover 
@@ -225,15 +372,37 @@ h3
     color: white;
 }
 
-#text_com
+@media only screen and (min-width: 500px)
 {
-    border: 2px solid gray;
-    min-height: 10em;
-    width: auto;
-    max-width: 30em;
-    text-align: justify;
+    #button_com
+    {
+        font-size: large;
+    }
 }
 
+details > form
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+details > form > textarea
+{
+    border: 2px solid gray;
+    border-radius: 4px;
+    min-height: 10em;
+    width: 100%;
+    padding: 5px;
+    text-align: justify;
+    resize: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+details > form > input[type=submit]
+{
+    margin: 20px;
+}
 
 .header_com
 {
@@ -272,19 +441,12 @@ h3
 
 /* footer */
 
-footer
-{
-    justify-content: center;
-    display: flex;
-}
 
 #footer
 {
-    border-top: solid red 3px;
-    margin-left: 15%;
+    border-top: solid darkred 3px;
+    margin: 50px 5% 25px;
     flex:3;
-    margin-right: 15%;
     padding-top: 10px;
     text-align: center;
-    
 }

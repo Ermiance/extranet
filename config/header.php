@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,25 +10,52 @@
 </head>
 <body>
 <header>
-    <a href="index.php"><img id="logo" src="img/logo_gbaf.png" alt="Logo GBAF"></a>
-    <div id="membre">
-        <img id="photo_membre" src="img/membre.png" alt="Photo membre">
-        <p>
+    <div id="top_header">
+        <a href="index.php"><img id="logo" src="img/logo_gbaf.png" alt="Logo GBAF"></a>
+        <div id="membre">
             <?php 
-            // include('functions.php');
+            include('functions.php');
             if (!isset($_COOKIE['username']))
             {
                 ?>
-                <a href='login.php'>Se connecter</a></br><a href='signup.php'>Créer un profil</a>
+                <img id="photo_membre" src="img/membre.png" alt="Photo membre">
+                <p>
+                    <a href='login.php'>Se connecter</a><br><a href='signup.php'>Créer un profil</a>
+                </p>
                 <?php
             }
             else
             {
+                try
+                {
+                    $user = loadUSer($_COOKIE['username']);
+                }
+                catch (exception $e)
+                {
+                    die('Erreur : ' . $e->getMessage());
+                } 
                 ?>
-                <a href='settings.php'><?=$_COOKIE['username']?></a></br><a href="logoutredirect.php?logout=true">Se déconnecter</a>
+                <a href='settings.php'><img id="photo_membre" src="img/membre.png" alt="Photo membre"></a>
+                <p>
+                    <a href='settings.php'><?=$user['nom'] . ' ' . $user['prenom']?></a><br>
+                    <a href="logoutredirect.php?logout=true">Se déconnecter</a>
+             </p>
                 <?php
             }
             ?>
-        </p>
+            </p>
+        </div>
     </div>
+    <?php
+    if(isset($_COOKIE['login']))
+    {
+        if($_COOKIE['login'] == 'true')
+        {
+            ?>
+            <p id="bienvenue">Bienvenue <?=$user['prenom']?> !</p>
+            <?php
+            setcookie('login', 'false', time() + 60, null, null, false, true);
+        }
+    }
+    ?>
 </header>

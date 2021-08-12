@@ -1,5 +1,6 @@
 <?php include('config/header.php'); ?>
     <section>
+        <div class='separateur'></div>
         <form method="post" action="signupredirect.php">
             <p>
                 Nom : <input type="text" name="nom" /><br>

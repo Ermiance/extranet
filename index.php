@@ -1,7 +1,4 @@
 <?php 
-include('config/functions.php');
-
-
 if (!isset($_COOKIE["username"]))
 {
     header('Location: login.php'); 
@@ -9,6 +6,7 @@ if (!isset($_COOKIE["username"]))
 
 include('config/header.php'); ?>
     <section id="presentation">
+        <div class='separateur'></div>
         <h1>Bienvenue sur l'extranet du GBAF</h1>
         <p>Le Groupement Banque Assurance Français​ (GBAF) est une fédération
         représentant les 6 grands groupes français :</p>
@@ -21,6 +19,7 @@ include('config/header.php'); ?>
         <img id="illustration" src="img/illustration.jpg" alt="Illustration GBAF"> 
     </section>
     <section id="acteurs">
+        <div class='separateur'></div>
         <h2>Acteurs et partenaires</h2>
         <p>Voici une présentation de tous les acteurs travaillant avec la GBAF.</p>
         <div id="liste_acteurs">
@@ -34,9 +33,8 @@ include('config/header.php'); ?>
                 ?>
                 <div class="bloc_acteur">
                     <a href="acteur.php?acteur=<?=urlencode($acteur['acteur']) ?>">
-                    <img class="logo_acteur" src="<?= $acteur['logo'] ?>" width="100" height ="100" 
-                    attr="<?= $acteur['logo']?>" alt=""></a>
-                    <h3><?= $acteur['acteur'] ?></h3>
+                    <img class="logo_acteur" src="<?= $acteur['logo'] ?>" width="100" height ="100" alt=""></a>
+                    <h3><a href="acteur.php?acteur=<?=urlencode($acteur['acteur']) ?>"><?= $acteur['acteur'] ?></a></h3>
                     <p class='texte_acteur'><?= $acteur['description'] ?></p>
                     <a class="suite" href="acteur.php?acteur=<?=urlencode($acteur['acteur']) ?>">Lire la suite</a>
                 </div>
