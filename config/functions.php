@@ -27,18 +27,18 @@ function loadUSer($username){
 }
 
 // ajoute un utilisateur à partir du formulaire
-function addUser($nom, $prenom, $username, $password, $question, $reponse){
-
+function addUser($settings)
+{
     $ins = connectBdd()->prepare("INSERT INTO account(nom, prenom, username, password, question, reponse)
     VALUES (:nom, :prenom, :username, :password, :question, :reponse)");
 
     $ins->execute([
-        'nom' => $nom, 
-        'prenom' => $prenom, 
-        'username' => $username, 
-        'password' => $password, 
-        'question' => $question, 
-        'reponse' => $reponse
+        'nom' => $settings['nom'], 
+        'prenom' => $settings['prenom'], 
+        'username' => $settings['username'], 
+        'password' => $settings['password'], 
+        'question' => $settings['question'], 
+        'reponse' => $settings['reponse']
     ]);
 }
 

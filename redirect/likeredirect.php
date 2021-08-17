@@ -1,5 +1,5 @@
 <?php
-include('config/functions.php');
+include('../config/functions.php');
 if(isset($_GET['acteur']) && isset($_COOKIE['username']))
 {
     try
@@ -37,5 +37,5 @@ if(isset($_GET['acteur']) && isset($_COOKIE['username']))
         updateVote($id_user, $id_acteur, $user_vote);
     }
 }
-header('Location: acteur.php?acteur=' . urlencode(urldecode($_GET['acteur'])));
+header('Location: ../acteur.php?acteur=' . urlencode(urldecode($_GET['acteur'])));
 ?>

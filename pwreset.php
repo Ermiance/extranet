@@ -1,4 +1,4 @@
-<?php include('config/header.php'); ?>
+<?php include('template/header.php'); ?>
     <section>
         <div class='separateur'></div>
         <?php
@@ -31,20 +31,20 @@
                 header('location: login.php?login=wronguser');
             }
             ?>
-            <form method="post" action="pwresetredirect.php">
+            <form method="post" action="redirect/pwresetredirect.php">
                 <div id="form">
                     <div class='form_div'>
-                        <p class="categorie">Votre nouveau mot de passe :</p> 
-                        <p class="categorie2"><input type="password" name="password" placeholder="******" /></p>
+                        <label for="password" class="categorie">Votre nouveau mot de passe</label> 
+                        <input class="categorie2" type="password" name="password" placeholder="<?=str_repeat('*', strlen($user['password']))?>" />
                    </div>
                     <div class='form_div'>
-                        <p class="categorie">Confirmation du mot de passe : </p>
-                        <p class="categorie2"><input type="password" name="passwordconfirm" placeholder="******" /></p>
+                        <label for="passwordconfirm" class="categorie">Confirmation du mot de passe </label>
+                        <input class="categorie2" type="password" name="passwordconfirm" placeholder="<?=str_repeat('*', strlen($user['password']))?>" />
                     </div>
                     <input type="hidden" name='username' value="<?=$user['username']?>">
-                    <p class='form_div2'>
+                    <div class='form_div2'>
                         <input id='valider' type="submit" value="Valider" />
-                    </p>
+                    </div>
                 </div>
             </form>
             <?php
@@ -56,6 +56,6 @@
         }
         ?>
     </section>
-    <?php include('config/footer.php'); ?>
+    <?php include('template/footer.php'); ?>
 </body>
 </html>

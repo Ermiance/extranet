@@ -1,8 +1,7 @@
-<?php include('config/header.php'); ?>
+<?php include('template/header.php'); ?>
     <section>
         <div class='separateur'></div>
         <?php
-        
         if (!isset($_COOKIE['username']))
         {
             if(isset($_GET['login']))
@@ -21,15 +20,15 @@
                 }
             }
             ?>
-            <form method="post" action="loginredirect.php">
+            <form method="post" action="redirect/loginredirect.php">
                 <div id="form">
                     <div class='form_div'>
-                        <p class="categorie">Pseudonyme :</p>
-                        <p><input type="text" name="username" /></p>
+                        <label class="categorie">Pseudonyme</label>
+                        <input type="text" name="username" />
                     </div>  
                     <div class='form_div'>
-                        <p class="categorie">Mot de passe : </p>
-                        <p><input type="password" name="password" /></p>
+                        <label class="categorie">Mot de passe</label>
+                        <input type="password" name="password" />
                     </div>
                     <div>
                         <input type="checkbox" name="question" id='question' class='form_div2'/>
@@ -50,6 +49,6 @@
         }
         ?>
     </section>
-    <?php include('config/footer.php'); ?>
+    <?php include('template/footer.php'); ?>
 </body>
 </html>

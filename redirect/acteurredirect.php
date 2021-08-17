@@ -1,5 +1,5 @@
 <?php
-include('config/functions.php');
+include('../config/functions.php');
 if(isset($_POST['id_acteur']) && isset($_COOKIE['username']))
 {
     try
@@ -11,10 +11,10 @@ if(isset($_POST['id_acteur']) && isset($_COOKIE['username']))
         die('Erreur : ' . $e->getMessage());
     }
     addPost($id_user, $_POST['id_acteur'], $_POST['post']);
-    header('location: acteur.php?acteur='. $_POST['acteur']);
+    header('location: ../acteur.php?acteur='. $_POST['acteur']);
 }
 else
 {
-    header('location: index.php');
+    header('location: ../index.php');
 }
 ?>

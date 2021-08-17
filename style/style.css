@@ -44,7 +44,7 @@ header
 
 a:link 
 {
-    color: red;
+    color: darkred;
     background-color: transparent;
     text-decoration: none;
 }
@@ -52,13 +52,11 @@ a:link
 a:visited 
 {
     color: darkred;
-    background-color: transparent;
-    text-decoration: none;
 }
   
 a:hover 
 {
-    background-color: transparent;
+    color: red;
     text-decoration: underline;
 }
 
@@ -82,6 +80,7 @@ section
 p
 {
     text-align: justify;
+    margin-left: 30px;
 }
 
 .separateur
@@ -116,7 +115,18 @@ h1
 
 .logo_acteur
 {
-    width: 200px;
+    float: left;
+    margin:auto;
+    align-self: center;
+}
+
+@media only screen and (min-width: 400px)
+{
+    .logo_acteur
+    {
+        width: 200px;
+        margin:0em
+    }
 }
 
 h3
@@ -184,12 +194,14 @@ h3
 {
     margin: 15px 0 -5px;
     width: 40%;
+    text-align: center;
 }
 
 .categorie2
 {
     width: 40%;
     text-justify: none;
+    margin: 0;
 }
 
 @media only screen and (min-width: 400px) 
@@ -204,6 +216,7 @@ h3
     {
         margin: 0;
         width: 40%;
+        text-align: start;
     }
 }
 
@@ -216,6 +229,20 @@ h3
 {
     width: auto;
     margin: auto;
+}
+
+div > input
+{
+    width: 250px;
+    margin: 15px 0;
+}
+
+div > textarea
+{
+    width: 250px;
+    overflow-y: visible;
+    resize: none;
+    margin: 15px 0;
 }
 
 #valider
@@ -305,7 +332,6 @@ h3
     border: rgb(139, 0, 0) solid 3px;
     border-radius: 5px;
     margin: 5px 10px;
-    padding-bottom: -4px;
 }
 
 @media only screen and (min-width: 400px)

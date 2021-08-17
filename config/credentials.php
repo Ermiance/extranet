@@ -1,5 +1,5 @@
 <?php 
-// configuration à changer par l'utilisateur
+// configuration de la base de donnée
 $cred = array(
 'host' => 'localhost',
 'dbname' => 'gbaf',
