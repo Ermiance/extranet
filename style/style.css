@@ -91,11 +91,6 @@ p
     padding-top: 10px;
 }
 
-h1
-{
-   
-}
-
 #illustration
 {
     width: 80%;
@@ -220,7 +215,7 @@ h3
     }
 }
 
-#question
+#question_box
 {
     margin: auto;
 }
@@ -438,7 +433,7 @@ details > form > input[type=submit]
     height: min-content;
 }
 
-.prenom
+.prenom_com
 {
     margin:0;
     height: min-content;

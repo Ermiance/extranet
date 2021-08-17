@@ -5,7 +5,6 @@ if (!isset($_COOKIE["username"]))
 }
 
 include('template/header.php'); ?>
-<body>
     <section id="presentation">
         <div class='separateur'></div>
         <h1>Bienvenue sur l'extranet du GBAF</h1>

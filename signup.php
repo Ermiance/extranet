@@ -31,31 +31,31 @@
             <div id="form">
                 <div class='form_div'>
                     <label for="nom" class="categorie">Nom</label>
-                    <input type="text" name="nom" />
+                    <input id="nom" type="text" name="nom" />
                 </div>  
                 <div class='form_div'>
                     <label for="prenom" class="categorie">Prénom</label>
-                    <input type="text" name="prenom" />
+                    <input id="prenom" type="text" name="prenom" />
                 </div> 
                 <div class='form_div'>
                     <label for="username" class="categorie">Nom d'utilisateur</label>
-                    <input type="text" name="username" />
+                    <input id="username" type="text" name="username" />
                 </div>  
                 <div class='form_div'>
                     <label for="password" class="categorie">Mot de passe</label>
-                    <input type="password" name="password" />
+                    <input id="password" type="password" name="password" />
                 </div>  
                 <div class='form_div'>
                     <label for="passwordconfirm" class="categorie">Confirmez le mot de passe</label>
-                    <input type="password" name="passwordconfirm" />
+                    <input id="passwordconfirm" type="password" name="passwordconfirm" />
                 </div>  
                 <div class='form_div'>
                     <label for="question" class="categorie">Question de sécurité</label>
-                    <textarea type="textarea" name="question" rows="5"></textarea>
+                    <textarea id="question" name="question" rows="5"></textarea>
                 </div>  
                 <div class='form_div'>
                     <label for="reponse" class="categorie">Réponse</label>
-                    <input type="text" name="reponse" />
+                    <input id="reponse" type="text" name="reponse" />
                 </div>
                 <input id='valider' type="submit" value="Valider" class='form_div2'/>
             </div>

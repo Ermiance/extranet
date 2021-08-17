@@ -63,7 +63,7 @@ if(isset($_GET['acteur']) && isset($_COOKIE['username']))
         while($com = $commentaires->fetch()){
             ?>
             <div class='commentaire'>
-                <div class='header_com'><h4 class='prenom'><?=userPrenom($com['id_user'])?></h4>
+                <div class='header_com'><h4 class='prenom_com'><?=userPrenom($com['id_user'])?></h4>
                 <p class='date'><?=date_format(date_create($com['date_add']), 'd/m/Y')?></p></div>
                 <p><?=$com['post']?></p>
             </div>

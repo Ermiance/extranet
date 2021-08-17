@@ -35,11 +35,11 @@
                 <div id="form">
                     <div class='form_div'>
                         <label for="password" class="categorie">Votre nouveau mot de passe</label> 
-                        <input class="categorie2" type="password" name="password" placeholder="<?=str_repeat('*', strlen($user['password']))?>" />
+                        <input id="password" class="categorie2" type="password" name="password" placeholder="<?=str_repeat('*', strlen($user['password']))?>" />
                    </div>
                     <div class='form_div'>
                         <label for="passwordconfirm" class="categorie">Confirmation du mot de passe </label>
-                        <input class="categorie2" type="password" name="passwordconfirm" placeholder="<?=str_repeat('*', strlen($user['password']))?>" />
+                        <input id="passwordconfirm" class="categorie2" type="password" name="passwordconfirm" placeholder="<?=str_repeat('*', strlen($user['password']))?>" />
                     </div>
                     <input type="hidden" name='username' value="<?=$user['username']?>">
                     <div class='form_div2'>

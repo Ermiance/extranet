@@ -23,16 +23,16 @@
             <form method="post" action="redirect/loginredirect.php">
                 <div id="form">
                     <div class='form_div'>
-                        <label class="categorie">Pseudonyme</label>
-                        <input type="text" name="username" />
+                        <label for="username" class="categorie">Pseudonyme</label>
+                        <input id="username" type="text" name="username" />
                     </div>  
                     <div class='form_div'>
-                        <label class="categorie">Mot de passe</label>
-                        <input type="password" name="password" />
+                        <label for="password" class="categorie">Mot de passe</label>
+                        <input id="password" type="password" name="password" />
                     </div>
                     <div>
-                        <input type="checkbox" name="question" id='question' class='form_div2'/>
-                        <label for="question">J'ai oublié mon mot de passe.</label>
+                        <input type="checkbox" name="question" id='question_box' class='form_div2'/>
+                        <label for="question_box">J'ai oublié mon mot de passe.</label>
                     </div>
                     <input id='valider' type="submit" value="Valider" class='form_div2'/>
                 </div>
