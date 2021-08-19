@@ -27,7 +27,7 @@ if(isset($_GET['acteur']) && isset($_COOKIE['username']))
                 <span id="hidden_com2"> commentaires</span></p>
             </div>
             <details id='nouveau_com'>
-                <summary><p id='button_com'>Nouveau<br>commentaire</p></summary>
+                <summary id='button_com'>Nouveau<br>commentaire</summary>
                 <form method='post' action='redirect/acteurredirect.php'>
                     <textarea name='post' placeholder='Votre commentaire'></textarea>
                     <input type="hidden" name='id_user' value='<?=$id_user?>'>
@@ -43,7 +43,7 @@ if(isset($_GET['acteur']) && isset($_COOKIE['username']))
                 ?>
                 <a href="redirect/likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=like&cancel=<?=$user_vote['like']?>&create=<?=$user_vote['create']?>#commentaires">
                 <img src="img/like<?=str_repeat('validated', $user_vote['like'])?>.png" alt="Like" width=30></a>
-                <p id="compteur_votes"><strong><?=countVote($acteur['id_acteur'])['sum_likes']?>&nbsp;</strong></p>
+                <p id="compteur_votes"><strong><?=countVote($acteur['id_acteur'])['sum_likes']?>&#160;</strong></p>
                 <a href="redirect/likeredirect.php?acteur=<?= urlencode($acteur['acteur']) ?>&vote=dislike&cancel=<?=$user_vote['dislike']?>&create=<?=$user_vote['create']?>#commentaires">
                 <img src="img/dislike<?=str_repeat('validated', $user_vote['dislike'])?>.png" alt="Dislike" width=30></a>
             </div>

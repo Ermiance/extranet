@@ -360,7 +360,6 @@ details > summary
 {
     list-style: none;
     display: flex;
-    justify-content: center;
 }
 
 details > summary::-webkit-details-marker 
@@ -384,7 +383,7 @@ details > summary::-webkit-details-marker
     text-align: center;
     display: grid;
     font-size: medium;
-    margin: 5px 2px;
+    margin: 5px auto;
     transition-duration: 0.4s;
     cursor: pointer;
     width: min-content;
@@ -465,12 +464,14 @@ details > form > input[type=submit]
 
 /* footer */
 
+footer
+{
+    max-width: 900px;
+    margin: -20px auto 25px;
+    padding-top: 10px;
+}
 
 #footer
 {
-    border-top: solid darkred 3px;
-    margin: 50px 5% 25px;
-    flex:3;
-    padding-top: 10px;
     text-align: center;
 }

@@ -15,7 +15,7 @@
             <?php
         }
         ?>
-        <p>Vous pouvez changer ci-dessous vos paramètres personnels :</p>
+        <h4>Vous pouvez changer ci-dessous vos paramètres personnels :</h4>
         <form method="post" action="redirect/settingsredirect.php">
             <div id="form">
                 <div class='form_div'>
